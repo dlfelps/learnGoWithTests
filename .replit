@@ -1,13 +1,13 @@
 entrypoint = "main.go"
 run = ["go", "run", "."]
 
-modules = ["go-1.22"]
+modules = ["go-1.23"]
 
 [env]
 GOPATH="$REPL_HOME/gopath"
 
 [nix]
-channel = "stable-24_05"
+channel = "stable-24_11"
 packages = ["errcheck", "go"]
 
 [gitHubImport]
