@@ -8,7 +8,7 @@ GOPATH="$REPL_HOME/gopath"
 
 [nix]
 channel = "stable-24_05"
-packages = ["errcheck"]
+packages = ["errcheck", "go"]
 
 [gitHubImport]
 requiredFiles = [".replit"]
