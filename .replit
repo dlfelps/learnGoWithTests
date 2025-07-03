@@ -1,10 +1,10 @@
 entrypoint = "main.go"
 run = ["go", "run", "."]
 
-modules = ["go-1.23"]
+modules = ["go-1.22"]
 
 [env]
-GOPATH="$REPL_HOME/gopath"
+GOPATH = "$REPL_HOME/gopath"
 
 [nix]
 channel = "stable-24_11"
