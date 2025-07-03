@@ -1,3 +1,3 @@
 module github.com/dlfelps/learnGoWithTests
 
-go 1.21.13
+go 1.24
