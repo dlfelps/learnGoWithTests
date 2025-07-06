@@ -5,18 +5,38 @@ import (
   "time"
 )
 
-func Racer(a, b string) (winner string) {
-  startA := time.Now()
-  http.Get(a)
-  aDuration := time.Since(startA)
+var tenSecondTimeout = 10 * time.Second
 
-  startB := time.Now()
-  http.Get(b)
-  bDuration := time.Since(startB)
+type RacerError string
 
-  if aDuration < bDuration {
-    return a
+func (e RacerError) Error() string {
+  return string(e)
+}
+
+const (
+  ErrRacerError = RacerError("Reached timeout.")
+)
+
+func Racer(a, b string) (winner string, error error) {
+  return ConfigurableRacer(a, b, tenSecondTimeout)
+}
+
+func ConfigurableRacer(a, b string, timeout time.Duration) (winner string, error error) {
+  select {
+  case <-ping(a):
+    return a, nil
+  case <-ping(b):
+    return b, nil
+  case <-time.After(timeout):
+    return "", ErrRacerError
   }
+}
 
-  return b
+func ping(url string) chan struct{} {
+  ch := make(chan struct{})
+  go func() {
+    http.Get(url)
+    close(ch)
+  }()
+  return ch
 }
