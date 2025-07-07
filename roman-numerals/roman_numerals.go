@@ -36,7 +36,19 @@ func (r RomanNumeral) ToRoman() string {
 		return ""
 	}
 	
-	// Roman numeral conversion logic would go here
-	// This is a placeholder for the actual conversion implementation
-	return fmt.Sprintf("Roman(%d)", int(r))
+	// Mapping of values to Roman numerals in descending order
+	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	numerals := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
+	
+	result := ""
+	num := int(r)
+	
+	for i := 0; i < len(values); i++ {
+		for num >= values[i] {
+			result += numerals[i]
+			num -= values[i]
+		}
+	}
+	
+	return result
 }
