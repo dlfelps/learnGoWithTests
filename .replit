@@ -1,5 +1,5 @@
 entrypoint = "main.go"
-run = ["go", "test", "./reflection"]
+run = ["go", "test", "./sync"]
 
 modules = ["go-1.22"]
 
