@@ -1,5 +1,5 @@
 entrypoint = "main.go"
-run = ["go", "test", "./context"]
+run = ["go", "test", "./roman-numerals"]
 
 modules = ["go-1.22"]
 
