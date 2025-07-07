@@ -72,3 +72,13 @@ func TestPropertiesOfConversion(t *testing.T) {
     t.Error("failed checks", err)
   }
 }
+
+func TestBruteForce(t *testing.T) {
+  for i := 0; i < 4000; i++ {
+    roman := ConvertToRoman(i)
+    fromRoman := ConvertToArabic(roman)
+    if fromRoman != i {
+      t.Errorf("got %d, want %d", fromRoman, i)
+    }
+  }
+}
