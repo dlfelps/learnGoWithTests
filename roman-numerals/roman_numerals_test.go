@@ -2,6 +2,8 @@ package roman
 
 import (
   "fmt"
+  "math/rand"
+  "reflect"
   "testing"
   "testing/quick"
 )
@@ -53,15 +55,20 @@ func TestRomanNumerals(t *testing.T) {
 
 func TestPropertiesOfConversion(t *testing.T) {
   assertion := func(arabic int) bool {
-    if arabic > 3999 || arabic < 0 {
-      return true
-    }
     roman := ConvertToRoman(arabic)
     fromRoman := ConvertToArabic(roman)
     return fromRoman == arabic
   }
 
-  if err := quick.Check(assertion, nil); err != nil {
+  config := &quick.Config{
+    MaxCount: 1000,
+    Values: func(values []reflect.Value, rand *rand.Rand) {
+      // Generate random integer between 0-3999
+      values[0] = reflect.ValueOf(rand.Intn(4000))
+    },
+  }
+
+  if err := quick.Check(assertion, config); err != nil {
     t.Error("failed checks", err)
   }
 }
