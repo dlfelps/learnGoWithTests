@@ -3,6 +3,7 @@ package blogposts_test
 import (
   "testing"
   "testing/fstest"
+  "github.com/dlfelps/blogposts"
 )
 
 func TestNewBlogPosts(t *testing.T) {
