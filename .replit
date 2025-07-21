@@ -1,5 +1,5 @@
 entrypoint = "main.go"
-run = ["cd", "blogrenderer", "&&", "go", "test", "."]
+run = ["cd", "http-server", "&&", "go", "test", "."]
 
 modules = ["go-1.22"]
 
@@ -18,6 +18,10 @@ build = "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o main"
 run = "./main"
 ignorePorts = false
 deploymentTarget = "gce"
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
 
 [[ports]]
 localPort = 8080
