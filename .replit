@@ -1,5 +1,5 @@
 entrypoint = "main.go"
-run = ["cd", "http-server", "&&", "go", "test", "."]
+run = ["cd", "json", "&&", "go", "test", "."]
 
 modules = ["go-1.22"]
 
